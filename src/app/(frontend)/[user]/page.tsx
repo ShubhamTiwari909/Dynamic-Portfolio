@@ -11,6 +11,7 @@ import Blogs from '../(components)/Blogs/Blogs'
 import { notFound } from 'next/navigation'
 import Navbar from '../(components)/Navbar'
 import Footer from '../(components)/Footer'
+import { uploadThingUrlConstructor } from '../lib/utils'
 
 type Args = {
   params: Promise<{
@@ -18,8 +19,7 @@ type Args = {
   }>
 }
 
-export default async function Home({ params }: Args) {
-  const { user } = await params
+const payloadData = async (user: string | undefined) => {
   const folds = await payload.find({
     collection: 'pages',
     where: {
@@ -32,6 +32,37 @@ export default async function Home({ params }: Args) {
   if (docs.length === 0) {
     notFound()
   }
+  return docs
+}
+
+export const generateMetadata = async ({ params }: Args) => {
+  const { user } = await params
+
+  const docs = await payloadData(user)
+  return {
+    title: docs[0]['ppc-seo']?.title,
+    description: docs[0]['ppc-seo']?.description,
+    openGraph: {
+      title: docs[0]['ppc-seo']?.title,
+      description: docs[0]['ppc-seo']?.description,
+      images: uploadThingUrlConstructor(
+        typeof docs[0]['ppc-seo']?.image !== 'string' ? docs[0]['ppc-seo']?.image?._key : '',
+      ),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: docs[0]['ppc-seo']?.title,
+      description: docs[0]['ppc-seo']?.description,
+      images: uploadThingUrlConstructor(
+        typeof docs[0]['ppc-seo']?.image !== 'string' ? docs[0]['ppc-seo']?.image?._key : '',
+      ),
+    },
+  }
+}
+
+export default async function Home({ params }: Args) {
+  const { user } = await params
+  const docs = await payloadData(user)
   return (
     <>
       <Navbar hiremeLink={docs[0].header.hireme} />

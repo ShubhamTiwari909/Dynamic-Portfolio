@@ -38,7 +38,7 @@ export default buildConfig({
     seoPlugin({
       generateTitle: () => 'Portofolio',
       generateDescription: () => `Dynamic portfolio for a frontend developer.`,
-      generateURL: ({ doc }) => `${doc.slug}`,
+      generateURL: ({ doc }) => `https://dynamic-portfolio-black.vercel.app/${doc.slug}`,
     }),
     uploadthingStorage({
       collections: {
