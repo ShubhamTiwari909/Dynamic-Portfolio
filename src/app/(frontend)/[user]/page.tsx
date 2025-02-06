@@ -12,6 +12,7 @@ import { notFound } from 'next/navigation'
 import Navbar from '../(components)/Navbar'
 import Footer from '../(components)/Footer'
 import { uploadThingUrlConstructor } from '../lib/utils'
+import Project from '../(components)/Projects/Project'
 
 type Args = {
   params: Promise<{
@@ -88,6 +89,15 @@ export default async function Home({ params }: Args) {
                       blogApi={block.blogApi}
                       blogApiKey={block.blogApiKey}
                       key={block.id}
+                    />
+                  )
+                case 'projects':
+                  return (
+                    <Project
+                      project={{
+                        title: block.title,
+                        projects: block.projects,
+                      }}
                     />
                   )
               }

@@ -17,6 +17,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: '5tusvrs76h.ufs.sh',
       },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+      },
     ],
   },
 }

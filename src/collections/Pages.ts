@@ -20,6 +20,7 @@ import { Skills } from '@/app/blocks/TechnicalSkills'
 import { AboutMe } from '@/app/blocks/AboutMe'
 import { Blogs } from '@/app/blocks/Blogs'
 import { Email, Phone } from '@/fields/footer'
+import { Projects } from '@/app/blocks/Projects'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -46,7 +47,7 @@ export const Pages: CollectionConfig = {
             {
               name: 'blocks',
               type: 'blocks',
-              blocks: [Skills, AboutMe, Blogs],
+              blocks: [Skills, AboutMe, Blogs, Projects],
             },
           ],
         },

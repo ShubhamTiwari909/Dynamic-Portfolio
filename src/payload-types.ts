@@ -157,6 +157,21 @@ export interface Page {
               blockName?: string | null;
               blockType: 'blogs';
             }
+          | {
+              title: string;
+              projects?:
+                | {
+                    title: string;
+                    description: string;
+                    link: string;
+                    projectCover: string | Media;
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+              blockName?: string | null;
+              blockType: 'projects';
+            }
         )[]
       | null;
   };
@@ -344,6 +359,22 @@ export interface PagesSelect<T extends boolean = true> {
                     blogApi?: T;
                     blogApiKey?: T;
                     profileLink?: T;
+                    id?: T;
+                    blockName?: T;
+                  };
+              projects?:
+                | T
+                | {
+                    title?: T;
+                    projects?:
+                      | T
+                      | {
+                          title?: T;
+                          description?: T;
+                          link?: T;
+                          projectCover?: T;
+                          id?: T;
+                        };
                     id?: T;
                     blockName?: T;
                   };
