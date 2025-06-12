@@ -70,7 +70,7 @@ export default async function Home({ params }: Args) {
   const docs = await payloadData(user)
   const { isEnabled: draft } = await draftMode()
 
-  let links: { href: string; label: string }[] = []
+  const links: { href: string; label: string }[] = []
 
   docs[0].content?.blocks?.map((block) => {
     switch (block.blockType) {

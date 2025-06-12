@@ -1,4 +1,4 @@
-import { Block, Field, FieldTypes, TextFieldManyValidation, TextFieldSingleValidation } from 'payload'
+import { Block } from 'payload'
 
 export const Skills: Block = {
   slug: 'technicalSkills',

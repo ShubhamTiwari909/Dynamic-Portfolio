@@ -1,5 +1,5 @@
 'use client'
-import { Button, Container, Text } from '@mantine/core'
+import { Button, Container } from '@mantine/core'
 import Link from 'next/link'
 import React from 'react'
 import { cn } from '../lib/utils'
