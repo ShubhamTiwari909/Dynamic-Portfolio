@@ -15,25 +15,25 @@ importers:
         specifier: ^7.16.2
         version: 7.17.8(react@19.0.0)
       '@payloadcms/db-mongodb':
-        specifier: latest
+        specifier: ^3.33.0
         version: 3.42.0(@aws-sdk/credential-providers@3.826.0)(payload@3.42.0(graphql@16.11.0)(typescript@5.7.3))
       '@payloadcms/live-preview-react':
-        specifier: ^3.42.0
+        specifier: ^3.33.0
         version: 3.42.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@payloadcms/next':
-        specifier: latest
+        specifier: ^3.33.0
         version: 3.42.0(@types/react@19.0.7)(graphql@16.11.0)(monaco-editor@0.52.2)(next@15.1.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.42.0(graphql@16.11.0)(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)
       '@payloadcms/payload-cloud':
-        specifier: latest
+        specifier: ^3.33.0
         version: 3.42.0(payload@3.42.0(graphql@16.11.0)(typescript@5.7.3))
       '@payloadcms/plugin-seo':
-        specifier: ^3.20.0
+        specifier: ^3.33.0
         version: 3.42.0(@types/react@19.0.7)(monaco-editor@0.52.2)(next@15.1.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.42.0(graphql@16.11.0)(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)
       '@payloadcms/richtext-lexical':
-        specifier: latest
+        specifier: ^3.33.0
         version: 3.42.0(@faceless-ui/modal@3.0.0-beta.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@faceless-ui/scroll-info@2.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@payloadcms/next@3.42.0(@types/react@19.0.7)(graphql@16.11.0)(monaco-editor@0.52.2)(next@15.1.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.42.0(graphql@16.11.0)(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(@types/react@19.0.7)(monaco-editor@0.52.2)(next@15.1.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.42.0(graphql@16.11.0)(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)(yjs@13.6.27)
       '@payloadcms/storage-uploadthing':
-        specifier: ^3.20.0
+        specifier: ^3.33.0
         version: 3.42.0(@types/react@19.0.7)(monaco-editor@0.52.2)(next@15.1.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.42.0(graphql@16.11.0)(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(tailwindcss@4.1.8)(typescript@5.7.3)
       '@tailwindcss/postcss':
         specifier: ^4.0.3
@@ -63,7 +63,7 @@ importers:
         specifier: 15.1.5
         version: 15.1.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4)
       payload:
-        specifier: latest
+        specifier: ^3.33.0
         version: 3.42.0(graphql@16.11.0)(typescript@5.7.3)
       postcss:
         specifier: ^8.5.1
@@ -8922,7 +8922,7 @@ snapshots:
   tsx@4.19.2:
     dependencies:
       esbuild: 0.23.1
-      get-tsconfig: 4.8.1
+      get-tsconfig: 4.10.1
     optionalDependencies:
       fsevents: 2.3.3
 

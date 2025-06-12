@@ -123,6 +123,7 @@ export default async function Home({ params }: Args) {
                       title: block.title,
                       projects: block.projects,
                     }}
+                    key={block.id}
                   />
                 )
             }
