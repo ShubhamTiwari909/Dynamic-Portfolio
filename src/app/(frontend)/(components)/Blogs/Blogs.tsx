@@ -15,7 +15,11 @@ const Blogs = ({
   profileLink: string
 }) => {
   return (
-    <Container size="xl" className="w-full py-10 lg:py-16 lg:!px-0 scroll-m-20" id="blogs">
+    <Container
+      size="xl"
+      className="w-full py-10 lg:py-16 lg:!px-0 scroll-m-20"
+      id={heading.toLocaleLowerCase().replaceAll(' ', '-')}
+    >
       <Heading heading={heading} />
       <MyBlogs blogApiKey={blogApiKey} profileLink={profileLink} blogApi={blogApi} />
     </Container>

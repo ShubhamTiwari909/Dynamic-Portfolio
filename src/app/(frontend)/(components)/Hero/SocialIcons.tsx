@@ -3,8 +3,6 @@ import { Flex } from '@mantine/core'
 import Link from 'next/link'
 import React from 'react'
 import { FaGithub, FaLinkedin, FaBloggerB } from 'react-icons/fa'
-import store from '../../hooks/store'
-import { themesStore } from '../../hooks/theme'
 import { Page } from '@/payload-types'
 
 type Icon = {
@@ -29,8 +27,6 @@ const SocialIcons = ({
   linkedinLink: Page['hero']['linkedinLink']
   blogLink: Page['hero']['blogLink']
 }) => {
-  const theme = store((state) => state.theme)
-  const currentTheme = themesStore[theme]
   const links = [
     {
       name: 'github',
@@ -53,7 +49,7 @@ const SocialIcons = ({
             key={index}
             href={(link.link as string) || ''}
             target="_blank"
-            className={`p-2 rounded-full ${currentTheme['bg-200']} animate__animated animate__rotateIn`}
+            className="p-2 rounded-full bg-primary-200 animate__animated animate__rotateIn"
           >
             {Icons[link.name]}
           </Link>

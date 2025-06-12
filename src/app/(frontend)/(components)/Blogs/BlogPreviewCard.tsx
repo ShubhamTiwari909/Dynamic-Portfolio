@@ -4,8 +4,6 @@ import Link from 'next/link'
 import React from 'react'
 import ScrollAnimation from 'react-animate-on-scroll'
 import { FaEye } from 'react-icons/fa'
-import store from '../../hooks/store'
-import { themesStore } from '../../hooks/theme'
 
 const BlogPreviewCard = ({
   image,
@@ -20,14 +18,11 @@ const BlogPreviewCard = ({
   description: string
   page_views_count: number
 }) => {
-  const theme = store((state) => state.theme)
-  const currentTheme = themesStore[theme]
-
   return (
     <ScrollAnimation animateIn="animate__fadeIn" className="h-full">
       <div className="max-w-[750px] mx-auto h-full rounded-xl shadow-md shadow-slate-100">
         <div
-          className={`relative h-full flex w-full max-w-[25.5rem] flex-col rounded-xl ${currentTheme['bg-200']} bg-clip-border text-slate-900 shadow-2xl`}
+          className={`relative h-full flex w-full max-w-[25.5rem] flex-col rounded-xl bg-primary-200 bg-clip-border text-slate-900 shadow-2xl`}
         >
           <div className="relative mx-4 mt-4 overflow-hidden shadow-lg text-slate-100 rounded-xl bg-blue-gray-500 bg-clip-border shadow-blue-gray-500/40">
             <Image
@@ -41,7 +36,7 @@ const BlogPreviewCard = ({
               className="w-[400px] h-[250px] object-cover"
             />
             <p
-              className={`absolute flex items-center gap-2 p-2 text-xs font-bold ${currentTheme['bg-700']}  rounded-lg top-2 right-2 text-slate-100`}
+              className={`absolute flex items-center gap-2 p-2 text-xs font-bold bg-primary-700 rounded-lg top-2 right-2 text-slate-100`}
             >
               <FaEye size={14} />
               {page_views_count}
@@ -61,7 +56,7 @@ const BlogPreviewCard = ({
             <Link
               href={href}
               target="_blank"
-              className={`block w-full select-none rounded-lg ${currentTheme['bg-900']} py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none`}
+              className={`block w-full select-none rounded-lg bg-primary-900 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none`}
             >
               Read
             </Link>

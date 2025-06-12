@@ -2,35 +2,20 @@
 import { Button, Container, Text } from '@mantine/core'
 import Link from 'next/link'
 import React from 'react'
-import ThemeChanger from './ThemeChanger'
-import store from '../hooks/store'
-import { themesStore } from '../hooks/theme'
+import { cn } from '../lib/utils'
 
-const Links = [
-  {
-    label: 'Introduction',
-    href: '#introduction',
-  },
-  {
-    label: 'Skills',
-    href: '#skills',
-  },
-  {
-    label: 'About',
-    href: '#about',
-  },
-  {
-    label: 'Blogs',
-    href: '#blogs',
-  },
-]
-
-const Navbar = ({ hiremeLink }: { hiremeLink: string }) => {
+const Navbar = ({
+  hiremeLink,
+  links,
+}: {
+  hiremeLink: string
+  links: { href: string; label: string }[]
+}) => {
   const [show, setShow] = React.useState(false)
   const [active, setActive] = React.useState('#introduction')
 
-  const theme = store((state) => state.theme)
-  const currentTheme = themesStore[theme]
+  const Links = [{ href: '#introduction', label: 'Home' }, ...links]
+
   return (
     <header className="flex shadow-md py-4 px-4 sm:px-10 bg-gradient-to-r from-slate-900 to-neutral-900 font-[sans-serif] min-h-[70px] tracking-wide fixed top-0 z-50 w-full border-b-2 border-b-white/20">
       <Container size="xl" className="w-full !px-0 lg:!px-5">
@@ -66,35 +51,25 @@ const Navbar = ({ hiremeLink }: { hiremeLink: string }) => {
               </svg>
             </button>
 
-            <ul className="lg:flex gap-x-5 max-lg:space-y-3 max-lg:fixed max-lg:bg-slate-900 max-lg:w-1/2 max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50 transition-all duration-200 ease-in-out text-xl">
-              {Links.map((link) => (
+            <ul className="lg:flex lg:max-w-200 whitespace-nowrap overflow-x-auto gap-x-5 lg:gap-x-8 max-lg:space-y-3 max-lg:fixed max-lg:bg-slate-900 max-lg:w-1/2 max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50 transition-all duration-200 ease-in-out text-xl navbar">
+              {Links.map((link, index) => (
                 <li
-                  key={link.href}
-                  className="max-lg:border-b border-gray-300 max-lg:py-3 lg:first:px-0 lg:px-3"
+                  key={index}
+                  className="max-lg:border-b border-gray-300 shrink-0 max-lg:py-3 text-sm lg:w-fit"
                   onClick={() => setShow(!show)}
                 >
                   <Link
                     href={link.href}
-                    className={`hover:${currentTheme['text-500']} block ${
-                      active === link.href ? currentTheme['text-300'] : 'text-slate-300'
-                    }`}
+                    className={cn(
+                      'hover:text-primary-500 text-primary-500 block',
+                      active === link.href ? 'text-primary-300' : 'text-slate-300',
+                    )}
                     onClick={() => setActive(link.href)}
                   >
                     {link.label}
                   </Link>
                 </li>
               ))}
-              <li
-                className="max-lg:border-b border-gray-300 max-lg:py-3 lg:first:px-0 lg:px-3 flex items-center gap-2"
-                onClick={() => setShow(!show)}
-              >
-                <Text
-                  className={`lg:hidden hover:${currentTheme['text-500']} block !text-slate-300 !text-xl`}
-                >
-                  Theme -
-                </Text>
-                <ThemeChanger />
-              </li>
             </ul>
           </div>
 
@@ -104,7 +79,7 @@ const Navbar = ({ hiremeLink }: { hiremeLink: string }) => {
               component="a"
               href={hiremeLink}
               target="_blank"
-              className={`${currentTheme['bg-500']}`}
+              className="!bg-primary-500"
             >
               Hire me
             </Button>
@@ -112,7 +87,7 @@ const Navbar = ({ hiremeLink }: { hiremeLink: string }) => {
             <Button
               id="toggleOpen"
               onClick={() => setShow(!show)}
-              className={`lg:!hidden ${currentTheme['bg-500']}`}
+              className="lg:!hidden !bg-primary-500"
               color="orange"
             >
               <svg

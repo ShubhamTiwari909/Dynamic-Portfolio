@@ -55,6 +55,10 @@ export const HireMe: Field = {
   type: 'text',
   label: 'Hire me Link',
   defaultValue: '',
+  admin: {
+    description:
+      'Link to your contact form or email address where you can be reached for hiring inquiries. For email address, use the format "mailto:<email_address>".',
+  },
 }
 
 export const DownloadCV: Field = {

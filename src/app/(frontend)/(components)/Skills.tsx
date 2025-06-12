@@ -2,8 +2,6 @@
 import { Container, Flex, RingProgress, Text } from '@mantine/core'
 import React from 'react'
 import ScrollAnimation from 'react-animate-on-scroll'
-import store from '../hooks/store'
-import { themeColors, themesStore } from '../hooks/theme'
 
 type SkillsProps = {
   title: string
@@ -18,31 +16,39 @@ type SkillsProps = {
   blockType: 'technicalSkills'
 }
 const Skills = ({ skills }: { skills: SkillsProps }) => {
-  const theme = store((state) => state.theme)
-  const currentTheme = themesStore[theme]
-
-  const color = store((state) => state.color)
-  const currentColor = themeColors[color]
-
   return (
-    <Container size="xl" className="w-full py-10 lg:py-16 scroll-m-20" id="skills">
+    <Container
+      size="xl"
+      className="w-full py-10 lg:py-16 scroll-m-20"
+      id={skills.title.toLocaleLowerCase().replaceAll(' ', '-')}
+    >
       <ScrollAnimation animateIn="animate__rubberBand">
-        <h2 className={`mb-10 text-6xl text-center ${currentTheme['text-200']}`}>{skills.title}</h2>
+        <h2 className="mb-10 text-6xl text-center text-primary-200">{skills.title}</h2>
       </ScrollAnimation>
       <Flex wrap="wrap" gap={50} justify="center" className="mb-16">
         {skills.skills.map((skill, index) => {
           return (
-            <ScrollAnimation key={index} animateIn="animate__fadeInUp">
+            <ScrollAnimation
+              key={index}
+              animateIn="animate__fadeInUp"
+              className="[&_.mantine-RingProgress-label]:flex [&_.mantine-RingProgress-label]:justify-center"
+            >
               <RingProgress
-                size={240}
+                size={260}
                 sections={[
                   {
                     value: Number(skill.value),
-                    color: skill.color ? `#${skill.color}` : currentColor['500'],
+                    color: skill.color ? `#${skill.color}` : 'var(--color-primary-400)',
                   },
                 ]}
                 label={
-                  <Text c="#ffffff" fw={700} ta="center" size="xl">
+                  <Text
+                    c="#ffffff"
+                    fw={700}
+                    ta="center"
+                    size="xl"
+                    className="max-w-48 text-wrap mx-auto"
+                  >
                     {skill.label}
                   </Text>
                 }

@@ -6,6 +6,7 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
+import { revalidatePage, revalidateDelete } from '@/collections/utils/revalidatePage'
 import {
   DownloadCV,
   HeroImage,
@@ -24,7 +25,25 @@ import { Projects } from '@/app/blocks/Projects'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
+  admin: {
+    useAsTitle: 'title',
+    defaultColumns: ['title', 'slug', 'createdAt', 'updatedAt', '_status'],
+    livePreview: {
+      url: ({ data }) => `${process.env.PREVIEW_URL}/${data.slug}`,
+    },
+    preview: ({ slug }) => `${process.env.PREVIEW_URL}/${slug}`,
+  },
+  hooks: {
+		afterChange: [revalidatePage],
+		afterDelete: [revalidateDelete],
+	},
   fields: [
+    {
+      name: 'title',
+      type: 'text',
+      required: true,
+      label: 'Page Title',
+    },
     {
       name: 'slug',
       type: 'text',
@@ -131,4 +150,8 @@ export const Pages: CollectionConfig = {
       ],
     },
   ],
+  versions: {
+		drafts: true,
+		maxPerDoc: 100,
+	},
 }

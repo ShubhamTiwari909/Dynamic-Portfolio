@@ -1,13 +1,9 @@
 'use client'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
-import store from '../../hooks/store'
-import { themesStore } from '../../hooks/theme'
 
 const ProjectImage = ({ src, alt, ...props }: { src: string; alt: string }) => {
   const [imageSrc, setImageSrc] = useState('')
-  const theme = store((state) => state.theme)
-  const currentTheme = themesStore[theme]
 
   useEffect(() => {
     if (src === '') {
@@ -23,7 +19,7 @@ const ProjectImage = ({ src, alt, ...props }: { src: string; alt: string }) => {
       width={300}
       height={300}
       alt={alt || 'Ramdome picture'}
-      className={`object-cover min-h-60 w-full lg:w-fit rounded-2xl border-2 border-solid ${currentTheme['border-400']} mb-5 lg:mb-0`}
+      className="object-cover min-h-60 w-full lg:w-fit rounded-2xl border-2 border-solid border-primary-400 mb-5 lg:mb-0"
       {...props}
     />
   )

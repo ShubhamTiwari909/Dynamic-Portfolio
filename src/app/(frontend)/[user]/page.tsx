@@ -13,6 +13,8 @@ import Navbar from '../(components)/Navbar'
 import Footer from '../(components)/Footer'
 import { uploadThingUrlConstructor } from '../lib/utils'
 import Project from '../(components)/Projects/Project'
+import { draftMode } from 'next/headers'
+import { RefreshRouteOnSave } from '@/collections/utils/RefreshRouteOnSave'
 
 type Args = {
   params: Promise<{
@@ -21,8 +23,10 @@ type Args = {
 }
 
 const payloadData = async (user: string | undefined) => {
+  const { isEnabled: draft } = await draftMode()
   const folds = await payload.find({
     collection: 'pages',
+    draft,
     where: {
       slug: {
         equals: user,
@@ -64,48 +68,67 @@ export const generateMetadata = async ({ params }: Args) => {
 export default async function Home({ params }: Args) {
   const { user } = await params
   const docs = await payloadData(user)
-  return (
-    <>
-      <Navbar hiremeLink={docs[0].header.hireme} />
-      <main className="mt-20 lg:mt-14">
-        <div>
-          <Hero data={docs[0].hero} />
-          {docs[0]?.content?.blocks &&
-            docs[0]?.content?.blocks.map((block) => {
-              switch (block.blockType) {
-                case 'technicalSkills':
-                  return <Skills skills={block} key={block.id} />
-                case 'aboutme':
-                  return (
-                    <Vortex backgroundColor="transparent">
-                      <AboutMe aboutme={block} key={block.id} />
-                    </Vortex>
-                  )
-                case 'blogs':
-                  return (
-                    <Blogs
-                      profileLink={block.profileLink}
-                      heading={block.title}
-                      blogApi={block.blogApi}
-                      blogApiKey={block.blogApiKey}
-                      key={block.id}
-                    />
-                  )
-                case 'projects':
-                  return (
-                    <Project
-                      project={{
-                        title: block.title,
-                        projects: block.projects,
-                      }}
-                    />
-                  )
-              }
-            })}
-        </div>
-      </main>
+  const { isEnabled: draft } = await draftMode()
 
+  let links: { href: string; label: string }[] = []
+
+  docs[0].content?.blocks?.map((block) => {
+    switch (block.blockType) {
+      case 'aboutme':
+        links.push({ href: '#about', label: block.title })
+        break
+      case 'technicalSkills':
+        links.push({ href: '#skills', label: block.title })
+        break
+      case 'blogs':
+        links.push({ href: '#blogs', label: block.title })
+        break
+      case 'projects':
+        links.push({ href: '#projects', label: block.title })
+        break
+    }
+  })
+
+  return (
+    <main data-theme={docs[0].themes.theme} className="relative">
+      {draft && <RefreshRouteOnSave />}
+      <Navbar hiremeLink={docs[0].header.hireme} links={links} />
+      <div className="mt-20 lg:mt-14">
+        <Hero data={docs[0].hero} />
+        {docs[0]?.content?.blocks &&
+          docs[0]?.content?.blocks.map((block) => {
+            switch (block.blockType) {
+              case 'technicalSkills':
+                return <Skills skills={block} key={block.id} />
+              case 'aboutme':
+                return (
+                  <Vortex backgroundColor="transparent">
+                    <AboutMe aboutme={block} key={block.id} />
+                  </Vortex>
+                )
+              case 'blogs':
+                return (
+                  <Blogs
+                    profileLink={block.profileLink}
+                    heading={block.title}
+                    blogApi={block.blogApi}
+                    blogApiKey={block.blogApiKey}
+                    key={block.id}
+                  />
+                )
+              case 'projects':
+                return (
+                  <Project
+                    project={{
+                      title: block.title,
+                      projects: block.projects,
+                    }}
+                  />
+                )
+            }
+          })}
+      </div>
       <Footer data={docs[0].footer} />
-    </>
+    </main>
   )
 }

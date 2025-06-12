@@ -4,15 +4,10 @@ import React from 'react'
 import SocialIcons from './SocialIcons'
 import Stats from './Stats'
 import DiscloseImage from '../DiscloseImage'
-import store from '../../hooks/store'
-import { themesStore } from '../../hooks/theme'
 import { Page } from '@/payload-types'
 import { uploadThingUrlConstructor } from '../../lib/utils'
 
 const Hero = ({ data }: { data: Page['hero'] }) => {
-  const theme = store((state) => state.theme)
-  const currentTheme = themesStore[theme]
-
   return (
     <Container size="xl" className="w-full py-10 lg:py-16 scroll-m-20" id="introduction">
       <Flex className="!block lg:!flex lg:justify-between">
@@ -23,9 +18,7 @@ const Hero = ({ data }: { data: Page['hero'] }) => {
           <p className="mb-8 text-4xl text-slate-300 animate__animated animate__backInLeft">
             {data.name}
           </p>
-          <h1
-            className={`mb-5 font-serif text-5xl ${currentTheme['text-500']} lg:text-6xl animate__animated animate__bounceIn`}
-          >
+          <h1 className="mb-5 font-serif text-5xl text-primary-500 lg:text-6xl animate__animated animate__bounceIn">
             {data.role}
           </h1>
           <SocialIcons
@@ -39,13 +32,13 @@ const Hero = ({ data }: { data: Page['hero'] }) => {
               component="a"
               href={data.hireme as string}
               target="_blank"
-              className={`animate__animated animate__fadeIn ${currentTheme['bg-500']}`}
+              className="animate__animated animate__fadeIn !bg-primary-500"
             >
               Hire me
             </Button>
             <Button
               size="lg"
-              className={`animate__animated animate__fadeIn ${currentTheme['bg-500']}`}
+              className="animate__animated animate__fadeIn !bg-primary-500"
               component="a"
               href={data.downloadcv as string}
               target="_blank"
@@ -61,7 +54,7 @@ const Hero = ({ data }: { data: Page['hero'] }) => {
             typeof data.heroImage !== 'string' ? data.heroImage._key : '',
           )}
           alt={typeof data.heroImage !== 'string' ? data.heroImage.alt : ''}
-          doorClassName={currentTheme['bg-100']}
+          doorClassName="bg-primary-100"
         />
       </Flex>
     </Container>

@@ -1,4 +1,4 @@
-import { Block } from 'payload'
+import { Block, Field, FieldTypes, TextFieldManyValidation, TextFieldSingleValidation } from 'payload'
 
 export const Skills: Block = {
   slug: 'technicalSkills',
@@ -29,11 +29,18 @@ export const Skills: Block = {
           type: 'text',
           label: 'Label',
           required: true,
+          maxLength: 36,
+          admin: {
+            description: 'Label for the skill, e.g., React, Node.js, etc. Should not exceed 36 characters.',
+          },
         },
         {
           name: 'color',
           type: 'text',
           label: 'Color',
+          admin:{
+            description: 'Hex color code for the skill ring, e.g., ff5733 without the #',
+          }
         },
       ],
     },
