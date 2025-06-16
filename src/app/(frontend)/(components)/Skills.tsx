@@ -15,12 +15,12 @@ type SkillsProps = {
   blockName?: string | null
   blockType: 'technicalSkills'
 }
-const Skills = ({ skills }: { skills: SkillsProps }) => {
+const Skills = ({ skills, blockId }: { skills: SkillsProps, blockId: string | null | undefined }) => {
   return (
     <Container
       size="xl"
       className="w-full py-10 lg:py-16 scroll-m-20"
-      id={skills.title.toLocaleLowerCase().replaceAll(' ', '-')}
+      id={`skills-${blockId}`}
     >
       <ScrollAnimation animateIn="animate__rubberBand">
         <h2 className="mb-10 text-6xl text-center text-primary-200">{skills.title}</h2>

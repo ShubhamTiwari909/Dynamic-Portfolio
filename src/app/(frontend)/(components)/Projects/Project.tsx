@@ -20,12 +20,12 @@ type ProjectProps = {
     | undefined
 }
 
-const Project = ({ project }: { project: ProjectProps }) => {
+const Project = ({ project, blockId }: { project: ProjectProps, blockId: string | null | undefined }) => {
   return (
     <Container
       size="xl"
       className="w-full py-10 lg:py-16 scroll-m-20"
-      id={project.title.toLocaleLowerCase().replaceAll(' ', '-')}
+      id={`projects-${blockId}`}
     >
       <ScrollAnimation animateIn="animate__rubberBand">
         <h2 className="mb-10 text-6xl text-center text-primary-200">{project.title}</h2>

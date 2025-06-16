@@ -16,12 +16,12 @@ type AboutMeProps = {
   blockType: 'aboutme'
 }
 
-const AboutMe = ({ aboutme }: { aboutme: AboutMeProps }) => {
+const AboutMe = ({ aboutme, blockId }: { aboutme: AboutMeProps, blockId: string | null | undefined  }) => {
   return (
     <Container
       size="xl"
       className="w-full py-10 lg:py-16 scroll-m-20"
-      id={aboutme.title.toLocaleLowerCase().replaceAll(' ', '-')}
+      id={`about-${blockId}`}
     >
       <ScrollAnimation animateIn="animate__rubberBand">
         <h2 className="mb-5 text-6xl text-center lg:mb-0 text-primary-200">{aboutme.title}</h2>

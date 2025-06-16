@@ -75,16 +75,16 @@ export default async function Home({ params }: Args) {
   docs[0].content?.blocks?.map((block) => {
     switch (block.blockType) {
       case 'aboutme':
-        links.push({ href: '#about', label: block.title })
+        links.push({ href: `#about-${block.id}`, label: block.title })
         break
       case 'technicalSkills':
-        links.push({ href: '#skills', label: block.title })
+        links.push({ href: `#skills-${block.id}`, label: block.title })
         break
       case 'blogs':
-        links.push({ href: '#blogs', label: block.title })
+        links.push({ href: `#blogs-${block.id}`, label: block.title })
         break
       case 'projects':
-        links.push({ href: '#projects', label: block.title })
+        links.push({ href: `#projects-${block.id}`, label: block.title })
         break
     }
   })
@@ -99,11 +99,11 @@ export default async function Home({ params }: Args) {
           docs[0]?.content?.blocks.map((block) => {
             switch (block.blockType) {
               case 'technicalSkills':
-                return <Skills skills={block} key={block.id} />
+                return <Skills skills={block} key={block.id} blockId={block.id} />
               case 'aboutme':
                 return (
-                  <Vortex backgroundColor="transparent">
-                    <AboutMe aboutme={block} key={block.id} />
+                  <Vortex key={block.id} backgroundColor="transparent">
+                    <AboutMe aboutme={block} blockId={block.id} />
                   </Vortex>
                 )
               case 'blogs':
@@ -114,6 +114,7 @@ export default async function Home({ params }: Args) {
                     blogApi={block.blogApi}
                     blogApiKey={block.blogApiKey}
                     key={block.id}
+                    blockId={block.id}
                   />
                 )
               case 'projects':
@@ -124,6 +125,7 @@ export default async function Home({ params }: Args) {
                       projects: block.projects,
                     }}
                     key={block.id}
+                    blockId={block.id}
                   />
                 )
             }
