@@ -15,6 +15,7 @@ import { uploadThingUrlConstructor } from '../lib/utils'
 import Project from '../(components)/Projects/Project'
 import { draftMode } from 'next/headers'
 import { RefreshRouteOnSave } from '@/collections/utils/RefreshRouteOnSave'
+import MeshViewer from '../(components)/MeshViewer'
 
 type Args = {
   params: Promise<{
@@ -95,6 +96,10 @@ export default async function Home({ params }: Args) {
       <Navbar hiremeLink={docs[0].header.hireme} links={links} />
       <div className="mt-20 lg:mt-14">
         <Hero data={docs[0].hero} />
+        <div className='h-80 lg:h-200 w-full relative py-10'>
+          <MeshViewer />
+          <p className='text-primary-800/80 text-shadow-lg absolute bottom-0 left-1/2 -translate-x-1/2 text-sm w-70 lg:w-fit text-center lg:text-2xl p-3 rounded-xl bg-primary-100 shadow-2xl'>Taking clients from around the world</p>
+        </div>
         {docs[0]?.content?.blocks &&
           docs[0]?.content?.blocks.map((block) => {
             switch (block.blockType) {
